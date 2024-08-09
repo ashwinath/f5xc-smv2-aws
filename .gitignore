@@ -11,3 +11,4 @@ id_rsa*
 *.json
 debug
 .DS_Store
+*.csv

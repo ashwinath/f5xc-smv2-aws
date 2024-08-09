@@ -11,9 +11,12 @@ resource "aws_instance" "master_vm" {
     network_interface_id = element(aws_network_interface.sm_slo_eni[*].id, count.index)
     device_index         = 0
   }
-  network_interface {
-    network_interface_id = element(aws_network_interface.sm_sli_eni[*].id, count.index)
-    device_index         = 1
+  dynamic "network_interface" {
+    for_each = range(0, length(var.aws_subnet_sli))
+    content {
+      network_interface_id = element(aws_network_interface.sm_sli_eni[*].id, count.index)
+      device_index         = 1
+    }
   }
 
   user_data = templatefile("${path.module}/templates/cloud-config-base.tmpl", {
@@ -39,7 +42,7 @@ resource "aws_network_interface" "sm_slo_eni" {
 }
 
 resource "aws_network_interface" "sm_sli_eni" {
-  count           = var.master_node_count
+  count           = length(var.aws_subnet_sli) > 0 ? var.master_node_count : 0
   subnet_id       = element(var.aws_subnet_sli, count.index)
   security_groups = [ var.aws_sg_allow_sli_traffic ]
 

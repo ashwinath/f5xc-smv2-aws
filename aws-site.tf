@@ -1,7 +1,7 @@
 module "aws" {
   count                     = var.aws_site_count
   source                    = "./site"
-  f5xc_cluster_name         = format("%s-aws-%d", var.project_prefix, count.index)
+  f5xc_cluster_name         = format("%s-aws-ha-%d", var.project_prefix, count.index)
   secure_mesh_site_provider = "aws"
   aws_instance_type         = "t3.xlarge"
   aws_availability_zones    = var.aws_availability_zones
@@ -25,5 +25,4 @@ module "aws" {
   f5xc_tenant               = var.f5xc_tenant
   f5xc_api_url              = var.f5xc_api_url
   f5xc_api_token            = var.f5xc_api_token
-  wait_for_online           = var.wait_for_online
 }

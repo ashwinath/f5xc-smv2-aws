@@ -81,6 +81,8 @@ while true; do
   if [ $status_total -eq $status_online ]; then
     finish_time=$(date -u)
     echo "#"
+    echo "# Sites: $sites"
+    echo "#"
     echo "# $status_online site(s) matching $site_name_filter online"
     echo "#"
     echo "# start_time : $start_time"

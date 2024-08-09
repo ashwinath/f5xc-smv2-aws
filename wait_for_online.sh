@@ -25,26 +25,12 @@ echo "# utc,total,waiting_for_registration,provisioning,upgrading,online,decommi
 
 while true; do
 
-  status_code=$(curl --write-out '%{http_code}' -s --output /dev/null -X 'GET' \
-    "$f5xc_api_url/config/namespaces/system/sites/mw-lanner?response_format=GET_RSP_FORMAT_DEFAULT" \
-    -H 'accept: application/data' \
-    -H 'Access-Control-Allow-Origin: *' \
-    -H 'Authorization: APIToken '"$api_token" \
-    -H 'x-volterra-apigw-tenant: '"$f5xc_tenant")
-
-  if [[ "$status_code" -ne 200 ]] ; then
-    echo "Error in request with status code: ${status_code}. Exiting..."
-    exit 0
-  fi
-
   sites=$(curl -s -X 'GET' \
     "$f5xc_api_url/config/namespaces/system/sites?response_format=GET_RSP_FORMAT_DEFAULT" \
     -H 'accept: application/data' \
     -H 'Access-Control-Allow-Origin: *' \
     -H 'Authorization: APIToken '"$api_token" \
     -H 'x-volterra-apigw-tenant: '"$f5xc_tenant" | jq -r '.items[].name' | grep $site_name_filter)
-
-  # echo $sites >&2
 
   status_total=0
   status_online=0
@@ -53,7 +39,6 @@ while true; do
   status_failed=0
   status_decommissioning=0
   status_waiting_for_registration=0
-
 
   for site in $sites; do
     status=$(curl -s -X 'GET' \

@@ -6,6 +6,7 @@ f5xc_api_url=$(grep ^f5xc_api_url terraform.tfvars | cut -d\" -f2)
 f5xc_tenant=$(grep ^f5xc_tenant terraform.tfvars | cut -d\" -f2)
 api_token=$(grep ^f5xc_api_token terraform.tfvars | cut -d\" -f2)
 aws_region=$(grep ^aws_region terraform.tfvars | cut -d\" -f2)
+aws_ami_name=$(grep ^aws_ami_name terraform.tfvars | cut -d\" -f2)
 
 master_node_count=$(grep ^master_node_count terraform.tfvars | cut -d= -f2)
 aws_site_count=$(grep ^aws_site_count terraform.tfvars | cut -d= -f2)
@@ -14,7 +15,7 @@ aws_site_count=$(grep ^aws_site_count terraform.tfvars | cut -d= -f2)
 
 start_time=$(date -u)
 
-echo "# aws_region=$aws_region f5xc_tenant=$f5xc_tenant"
+echo "# aws_region $aws_region f5xc_tenant $f5xc_tenant" aws_ami_name $aws_ami_name
 echo "#"
 echo "# $aws_site_count sites with $master_node_count master nodes each"
 echo "#"

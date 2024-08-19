@@ -7,6 +7,6 @@ output "nodes" {
 output "ip_address" {
     value = {
     for node in concat(aws_instance.master_vm):
-      node.private_ip => node.public_ip
+      node.tags["Name"] => node.public_ip
   }
 }

@@ -4,5 +4,5 @@ output "aws" {
 }
 
 output "ip_address" {
-  value = module.aws[*].node.aws[*].public_ip
+  value = module.aws[*].node.aws[*].ip_address
 }

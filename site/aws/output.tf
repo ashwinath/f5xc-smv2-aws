@@ -6,7 +6,7 @@ output "nodes" {
 
 output "ip_address" {
     value = {
-    for node in concat(aws_instance.master_vm):
-      node.tags["Name"] => node.public_ip
+    for node in range(length(aws_instance.master_vm)):
+      aws_instance.master_vm[node].tags.Name => aws_eip.sm_pub_ips[node].public_ip
   }
 }

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-site_name_filter="mwscale-aws"
+site_name_filter=$(grep ^project_prefix terraform.tfvars | cut -d\" -f2)
 
 f5xc_api_url=$(grep ^f5xc_api_url terraform.tfvars | cut -d\" -f2)
 f5xc_tenant=$(grep ^f5xc_tenant terraform.tfvars | cut -d\" -f2)

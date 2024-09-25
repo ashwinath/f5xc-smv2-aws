@@ -99,5 +99,5 @@ variable "aws_instance_type" {
 }
 variable "ec2_disk_size" {
   type    = number
-  default = 60
+  default = 80
 }

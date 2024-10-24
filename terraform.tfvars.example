@@ -16,7 +16,7 @@ aws_availability_zones = [ "a", "b", "c"]
 aws_slo_subnets     = [ "10.0.1.0/24", "10.0.2.0/24", "10.0.3.0/24"]
 aws_sli_subnets     = [ "10.0.11.0/24", "10.0.12.0/24", "10.0.13.0/24"]
 
-aws_ami_name        = "f5xc-ce-9.2024.22-20240807192140"
+aws_ami_name        = "f5xc-ce-9.2024.31-20241003081922"
 
 f5xc_api_url         = "https://tenant.console.ves.volterra.io/api"
 f5xc_api_token       = ""

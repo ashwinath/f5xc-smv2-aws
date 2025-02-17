@@ -21,3 +21,8 @@ aws_ami_name        = "f5xc-ce-9.2024.31-20241003081922"
 f5xc_api_url         = "https://tenant.console.ves.volterra.io/api"
 f5xc_api_token       = ""
 f5xc_tenant          = "tenant-........"
+
+xc_environment_name = "development"
+xc_cost_center      = "my team"
+xc_manager_email    = "mymanager@email.com"
+xc_team             = "development team"

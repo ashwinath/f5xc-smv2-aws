@@ -20,23 +20,28 @@ resource "aws_instance" "master_vm" {
   }
 
   user_data = templatefile("${path.module}/templates/cloud-config-base.tmpl", {
-      node_registration_token = var.f5xc_registration_token
+    node_registration_token = var.f5xc_registration_token
   })
 
   tags = {
-    Name = format("%s-m%d", var.f5xc_cluster_name, count.index)
-    ves-io-site-name = var.f5xc_cluster_name
+    Name                                             = format("%s-m%d", var.f5xc_cluster_name, count.index)
+    ves-io-site-name                                 = var.f5xc_cluster_name
     "kubernetes.io/cluster/${var.f5xc_cluster_name}" = "owned"
-    Creator = var.aws_owner_tag
+    Creator                                          = var.aws_owner_tag
+    UserEmail                                        = var.aws_owner_tag
+    "EnvironmentName/Type"                           = var.xc_environment_name
+    CostCenter                                       = var.xc_cost_center
+    ManagerEmail                                     = var.xc_manager_email
+    Team                                             = var.xc_team
   }
 }
 
 resource "aws_network_interface" "sm_slo_eni" {
   count           = var.master_node_count
   subnet_id       = element(var.aws_subnet_slo, count.index)
-  security_groups = [ var.aws_sg_allow_slo_traffic ]
+  security_groups = [var.aws_sg_allow_slo_traffic]
   tags = {
-    Name = format("%s-pub-eni-%d", var.f5xc_cluster_name, count.index)
+    Name    = format("%s-pub-eni-%d", var.f5xc_cluster_name, count.index)
     Creator = var.aws_owner_tag
   }
 }
@@ -44,16 +49,16 @@ resource "aws_network_interface" "sm_slo_eni" {
 resource "aws_network_interface" "sm_sli_eni" {
   count           = length(var.aws_subnet_sli) > 0 ? var.master_node_count : 0
   subnet_id       = element(var.aws_subnet_sli, count.index)
-  security_groups = [ var.aws_sg_allow_sli_traffic ]
+  security_groups = [var.aws_sg_allow_sli_traffic]
 
   tags = {
-    Name = format("%s-priv-eni-%d", var.f5xc_cluster_name, count.index)
+    Name    = format("%s-priv-eni-%d", var.f5xc_cluster_name, count.index)
     Creator = var.aws_owner_tag
   }
 }
 
 resource "aws_eip" "sm_pub_ips" {
-  count             = var.master_node_count
+  count = var.master_node_count
 }
 
 resource "aws_eip_association" "master_vm" {

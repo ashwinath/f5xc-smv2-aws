@@ -3,35 +3,35 @@ variable "ssh_public_key" {}
 variable "f5xc_cluster_name" {}
 
 variable "master_node_count" {
-  type = number
+  type    = number
   default = 0
 }
 variable "worker_node_count" {
-  type = number
+  type    = number
   default = 0
 }
 variable "secure_mesh_node_count" {
-  type = number
+  type    = number
   default = 0
 }
 variable "master_cpus" {
-  type = number
+  type    = number
   default = 4
 }
 variable "master_memory" {
-  type = number
+  type    = number
   default = 16384
 }
 variable "worker_cpus" {
-  type = number
+  type    = number
   default = 4
 }
 variable "worker_memory" {
-  type = number
+  type    = number
   default = 16384
 }
 variable "http_proxy" {
-  type = string
+  type    = string
   default = ""
 }
 variable "f5xc_api_url" {
@@ -44,21 +44,21 @@ variable "f5xc_tenant" {
   type = string
 }
 variable "secure_mesh_cpus" {
-  type = number
+  type    = number
   default = 4
 }
 variable "secure_mesh_memory" {
-  type = number
+  type    = number
   default = 16384
 }
 variable "f5xc_registration_wait_time" {
-    type    = number
-    default = 60
+  type    = number
+  default = 60
 }
 
 variable "f5xc_registration_retry" {
-    type    = number
-    default = 20
+  type    = number
+  default = 20
 }
 
 variable "f5xc_tunnel_type" {
@@ -82,33 +82,33 @@ variable "outside_macaddr" {
 }
 
 variable "inside_vip" {
-  type  = string
+  type    = string
   default = ""
 }
 
 variable "master_vm_size" {
-  type = string
+  type    = string
   default = "50G"
 }
 
 variable "worker_vm_size" {
-  type = string
+  type    = string
   default = "50G"
 }
 
 variable "slo_global_vn" {
-  type = string
+  type    = string
   default = ""
 }
 
 # AWS
 
 variable "aws_vpc_cidr" {
-  type = string
+  type    = string
   default = ""
 }
 variable "aws_owner_tag" {
-  type = string
+  type    = string
   default = ""
 }
 variable "aws_subnet_slo" {
@@ -124,11 +124,16 @@ variable "aws_sg_allow_sli_traffic" {
   type = string
 }
 variable "aws_availability_zones" {
-  type = list(string)
+  type    = list(string)
   default = []
 }
 variable "aws_instance_type" {
-  type = string
+  type    = string
   default = ""
 }
 variable "aws_ami_id" {}
+
+variable "xc_environment_name" {}
+variable "xc_cost_center" {}
+variable "xc_manager_email" {}
+variable "xc_team" {}

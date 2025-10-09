@@ -30,6 +30,7 @@ resource "aws_instance" "master_vm" {
     Creator                                          = var.aws_owner_tag
     UserEmail                                        = var.aws_owner_tag
     "EnvironmentName/Type"                           = var.xc_environment_name
+    Environment                                      = var.xc_environment_name
     CostCenter                                       = var.xc_cost_center
     ManagerEmail                                     = var.xc_manager_email
     Team                                             = var.xc_team

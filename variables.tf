@@ -79,3 +79,8 @@ variable "xc_team" {
   type    = string
   default = ""
 }
+
+variable "aws_profile" {
+  type    = string
+  default = ""
+}

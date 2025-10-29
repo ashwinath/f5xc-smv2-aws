@@ -3,7 +3,7 @@ module "aws" {
   source                    = "./site"
   f5xc_cluster_name         = format("%s-aws-ha-%d", var.project_prefix, count.index)
   secure_mesh_site_provider = "aws"
-  aws_instance_type         = "t3.xlarge"
+  aws_instance_type         = var.aws_instance_type
   aws_availability_zones    = var.aws_availability_zones
   aws_ami_id                = data.aws_ami_ids.smsv2.ids[0]
 

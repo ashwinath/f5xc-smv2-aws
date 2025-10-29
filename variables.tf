@@ -84,3 +84,8 @@ variable "aws_profile" {
   type    = string
   default = ""
 }
+
+variable "aws_instance_type" {
+  type    = string
+  default = ""
+}
